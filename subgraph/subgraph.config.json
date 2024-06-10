@@ -3,10 +3,10 @@
   "chain": "localhost",
   "datasources": [
     {
-      "name": "GenericToken",
-      "address": "0x1234567890123456789012345678901234567890",
+      "name": "CustomEAS",
+      "address": "0x0000000000000000000000000000000000000000",
       "startBlock": 0,
-      "module": ["erc20"]
+      "module": ["pausable"]
     }
   ]
 }
