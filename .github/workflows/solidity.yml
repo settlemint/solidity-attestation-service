@@ -29,15 +29,7 @@ permissions:
   security-events: write
   statuses: write
 
-env:
-  DISABLE_SUBGRAPH: true
-
 jobs:
-  echo_env_var:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Echo Environment Variable
-        run: echo "DISABLE_SUBGRAPH is ${{ env.DISABLE_SUBGRAPH }}"
   ci:
     name: CI
     uses: settlemint/smart-contracts-actions/.github/workflows/solidity.yml@main
