@@ -35,6 +35,8 @@ jobs:
     uses: settlemint/smart-contracts-actions/.github/workflows/solidity.yml@main
     secrets:
       TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    env:
+      DISABLE_SUBGRAPH: true
     with:
       docker-image-name: solidity-attestation-service
       runs-on: solidity-attestation-service
