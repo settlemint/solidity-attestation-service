@@ -2,7 +2,6 @@ import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
 
 const CustomEASModule = buildModule('EASDeployment', (m) => {
     const schemaRegistry = m.contract("SchemaRegistry", [], {});
-    console.log("schemaRegistry", schemaRegistry);
     const EAS = m.contract("EAS", [schemaRegistry], {});
 
     return { schemaRegistry, EAS };
