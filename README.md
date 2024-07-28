@@ -48,7 +48,7 @@ btp-scs foundry build
 or Hardhat:
 
 ```shell
-btp-scs foundry build
+btp-scs hardhat build
 ```
 
 ### Test
@@ -84,7 +84,7 @@ btp-scs hardhat network
 then:
 
 ```shell
-btp-scs hardhat deploy local -m <DEPLOYMENT_MODULE>
+btp-scs hardhat deploy local -m ignition/modules/main.ts
 ```
 
 ### Deploy to platform network
@@ -92,7 +92,7 @@ btp-scs hardhat deploy local -m <DEPLOYMENT_MODULE>
 You can also deploy your contracts to the network running on the platform by executing the following command:
 
 ```shell
-btp-scs hardhat deploy remote -m <DEPLOYMENT_MODULE>
+btp-scs hardhat deploy remote -m ignition/modules/main.ts
 ```
 
 ### Deploy your subgraph
