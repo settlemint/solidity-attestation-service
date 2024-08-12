@@ -8,4 +8,14 @@ const CustomEASModule = buildModule('EASDeployment', (m) => {
 
 });
 
+const SchemaRegistrationModule = buildModule('SchemaRegistration', (m) => {
+  const schemaAddress = m.getParameter('address');
+  const schemaContract = m.contractAt('SchemaContract', schemaAddress);
+  m.call(schemaContract, 'registerSchema');
+
+  return { schemaContract };
+});
+
+
 export default CustomEASModule;
+export { SchemaRegistrationModule };
