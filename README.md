@@ -9,7 +9,7 @@
 <br/>
 <p align="center">
 <a href="https://github.com/settlemint/solidity-attestation-service/actions?query=branch%3Amain"><img src="https://github.com/settlemint/solidity-attestation-service/actions/workflows/solidity.yml/badge.svg?event=push&branch=main" alt="CI status" /></a>
-<a href="https://fsl.software" rel="nofollow"><img src="https://img.shields.io/npm/l/@settlemint/sdk" alt="License"></a>
+<a href="https://fsl.software" rel="nofollow"><img src="https://img.shields.io/npm/l/@settlemint/solidity-attestation-service" alt="License"></a>
 <a href="https://www.npmjs.com/package/@settlemint/solidity-attestation-service" rel="nofollow"><img src="https://img.shields.io/npm/dw/@settlemint/solidity-attestation-service" alt="npm"></a>
 <a href="https://github.com/settlemint/solidity-attestation-service" rel="nofollow"><img src="https://img.shields.io/github/stars/settlemint/solidity-attestation-service" alt="stars"></a>
 </p>
