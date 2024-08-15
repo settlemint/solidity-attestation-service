@@ -10,6 +10,7 @@ If you want to use it separately, bootstrap a new project using
 
 ```shell
 forge init my-attestation-service --template settlemint/solidity-attestation-service
+```
 
 ## DX: Foundry & Hardhat hybrid
 
