@@ -1,7 +1,7 @@
-// SPDX-License-Identifier: MIT
-pragma solidity 0.8.26;
+// SPDX-License-Identifier: FSL-1.1-MIT
+pragma solidity ^0.8.26;
 
-import "eas-contracts/EAS.sol";
+import "@ethereum-attestation-service/eas-contracts/contracts/EAS.sol";
 
 // slither-disable-start all
 contract CustomEAS is EAS {

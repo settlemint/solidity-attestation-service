@@ -1,6 +1,4 @@
-@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
-ds-test/=lib/openzeppelin-contracts/lib/forge-std/lib/ds-test/src/
-erc4626-tests/=lib/openzeppelin-contracts/lib/erc4626-tests/
 forge-std/=lib/forge-std/src/
-openzeppelin-contracts/=lib/openzeppelin-contracts/contracts
-eas-contracts/=lib/eas-contracts/contracts
+hardhat/=node_modules/hardhat/
+@openzeppelin/=node_modules/@openzeppelin/
+@ethereum-attestation-service/=node_modules/@ethereum-attestation-service/
