@@ -1,14 +1,38 @@
 {
-  "name": "solidity-attestation-service",
+  "name": "@settlemint/solidity-attestation-service",
+  "description": "Smart contract set to use the Ethereum Attestation Service in SettleMint",
   "version": "7.0.0",
-  "description": "Solidity Attestation Service",
+  "private": false,
+  "license": "FSL-1.1-MIT",
+  "author": {
+    "name": "SettleMint",
+    "email": "support@settlemint.com",
+    "url": "https://settlemint.com"
+  },
+  "homepage": "https://github.com/settlemint/solidity-attestation-service/blob/main/README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/settlemint/solidity-attestation-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/settlemint/solidity-attestation-service/issues",
+    "email": "support@settlemint.com"
+  },
   "keywords": [
     "solidity",
-    "subgraph"
+    "blockchain-transformation",
+    "eas"
   ],
-  "author": "SettleMint <hello@settlemint.com>",
-  "license": "MIT",
-  "devDependencies": {
+  "files": [
+    "/contracts",
+    "/ignition",
+    "/lib",
+    "/subgraph",
+    "/test",
+    "/out",
+    "/artifacts"
+  ],
+  "dependencies": {
     "@nomicfoundation/hardhat-foundry": "1.1.2",
     "@nomicfoundation/hardhat-ignition-viem": "0.15.5",
     "@nomicfoundation/hardhat-toolbox-viem": "3.0.0",
