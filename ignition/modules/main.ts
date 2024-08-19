@@ -8,15 +8,16 @@ const CustomEASModule = buildModule('EASDeployment', (m) => {
 
 });
 
-const SchemaRegistrationModule = buildModule('SchemaRegistration', (m) => {
+const SchemaRegistrationModule = buildModule('SchemaRegistrationModule', (m) => {
   const schemaAddress = m.getParameter('address');
-  const schemaContract = m.contractAt('SchemaContract', schemaAddress);
+  const schemaContract = m.contractAt('SchemaRegistry', schemaAddress);
 
   const schema = m.getParameter('schema');
   const resolverAddress = m.getParameter('resolverAddress')
   const revocable = m.getParameter('revocable');
 
   m.call(schemaContract, 'register', [schema, resolverAddress, revocable]);
+  console.log('Schema registered:', schema);
   return { schemaContract };
 });
 

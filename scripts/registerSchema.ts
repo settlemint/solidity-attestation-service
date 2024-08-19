@@ -14,16 +14,19 @@ async function main() {
         'utf8'
       )
     );
-    const address = jsonData['CustomEASModule#SchemaRegistry'];
-    const { schemaContract } = await hre.ignition.deploy(SchemaRegistrationModule, {
+    const address = jsonData['EASDeployment#SchemaRegistry']
+    const val = await hre.ignition.deploy(SchemaRegistrationModule, {
       parameters: {
-        SchemaRegistrationModule: { 
-          schema: 'uint256 eventId, uint8 voteIndex', 
-          resolverAddress: '0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0', 
-          revocable: false 
+        SchemaRegistrationModule: {
+          address: address,
+          schema: 'bool gm',
+          resolverAddress: '0x0000000000000000000000000000000000000',
+          revocable: false
         },
       },
     });
+
+    console.log('Schema registered:', val);
   } catch (err) {
     console.error('Error:', err);
   }
