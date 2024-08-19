@@ -11,11 +11,14 @@ const CustomEASModule = buildModule('EASDeployment', (m) => {
 const SchemaRegistrationModule = buildModule('SchemaRegistration', (m) => {
   const schemaAddress = m.getParameter('address');
   const schemaContract = m.contractAt('SchemaContract', schemaAddress);
-  m.call(schemaContract, 'registerSchema');
 
+  const schema = m.getParameter('schema');
+  const resolverAddress = m.getParameter('resolverAddress')
+  const revocable = m.getParameter('revocable');
+
+  m.call(schemaContract, 'register', [schema, resolverAddress, revocable]);
   return { schemaContract };
 });
-
 
 export default CustomEASModule;
 export { SchemaRegistrationModule };

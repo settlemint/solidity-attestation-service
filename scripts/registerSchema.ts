@@ -1,13 +1,9 @@
 import { readFileSync } from 'fs';
 import hre, { network } from 'hardhat';
-import { RegistryContract } from '../ignition/modules/main';
+import { SchemaRegistrationModule } from '../ignition/modules/main';
 
 async function main() {
-//   const schemaExists = await run('check-schema');
 
-//   if (!schemaExists) {
-//     throw new Error('You have not created any schema.');
-//   }
   const chainIdHex = await network.provider.send('eth_chainId');
   const chainId = String(parseInt(chainIdHex, 16));
 
@@ -18,10 +14,14 @@ async function main() {
         'utf8'
       )
     );
-    const address = jsonData['RegistryModule#Registry'];
-    const { registry } = await hre.ignition.deploy(RegistryContract, {
+    const address = jsonData['CustomEASModule#SchemaRegistry'];
+    const { schemaContract } = await hre.ignition.deploy(SchemaRegistrationModule, {
       parameters: {
-        RegistryContract: { address: address },
+        SchemaRegistrationModule: { 
+          schema: 'uint256 eventId, uint8 voteIndex', 
+          resolverAddress: '0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0', 
+          revocable: false 
+        },
       },
     });
   } catch (err) {
