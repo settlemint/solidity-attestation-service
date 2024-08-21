@@ -15,7 +15,7 @@ async function main() {
       )
     );
     const address = jsonData['EASDeployment#SchemaRegistry']
-    const val = await hre.ignition.deploy(SchemaRegistrationModule, {
+    await hre.ignition.deploy(SchemaRegistrationModule, {
       parameters: {
         SchemaRegistrationModule: {
           address: address,
