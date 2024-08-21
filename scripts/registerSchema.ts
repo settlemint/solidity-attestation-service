@@ -19,14 +19,13 @@ async function main() {
       parameters: {
         SchemaRegistrationModule: {
           address: address,
-          schema: 'bool gm',
-          resolverAddress: '0x0000000000000000000000000000000000000',
+          schema: "bool gm",
+          resolverAddress: '0x0000000000000000000000000000000000000000',
           revocable: false
         },
       },
     });
 
-    console.log('Schema registered:', val);
   } catch (err) {
     console.error('Error:', err);
   }
