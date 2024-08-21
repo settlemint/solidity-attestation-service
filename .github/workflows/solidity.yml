@@ -84,7 +84,7 @@ jobs:
           node-version: 20
 
       - name: Install Node dependencies
-        run: npm install
+        run: npm install --force
 
       - name: Run Forge build
         run: |
