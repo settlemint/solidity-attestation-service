@@ -16,7 +16,7 @@ const SchemaRegistrationModule = buildModule('SchemaRegistrationModule', (m) => 
   const resolverAddress = m.getParameter('resolverAddress')
   const revocable = m.getParameter('revocable');
 
-  m.call(schemaContract, 'register', ["bool ng", resolverAddress, revocable]);
+  m.call(schemaContract, 'register', [schema, resolverAddress, revocable]);
   return { schemaContract };
 });
 
