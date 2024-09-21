@@ -1,29 +1,12 @@
-<p align="center">
-  <img src="https://github.com/settlemint/solidity-attestation-service/blob/main/OG_Solidity.jpg" align="center" alt="logo" />
-  <p align="center">
-    ✨ <a href="https://settlemint.com">https://settlemint.com</a> ✨
-    <br/>
-    Build your own blockchain usecase with ease.
-  </p>
-</p>
-<br/>
-<p align="center">
-<a href="https://github.com/settlemint/solidity-attestation-service/actions?query=branch%3Amain"><img src="https://github.com/settlemint/solidity-attestation-service/actions/workflows/solidity.yml/badge.svg?event=push&branch=main" alt="CI status" /></a>
-<a href="https://fsl.software" rel="nofollow"><img src="https://img.shields.io/npm/l/@settlemint/solidity-attestation-service" alt="License"></a>
-<a href="https://www.npmjs.com/package/@settlemint/solidity-attestation-service" rel="nofollow"><img src="https://img.shields.io/npm/dw/@settlemint/solidity-attestation-service" alt="npm"></a>
-<a href="https://github.com/settlemint/solidity-attestation-service" rel="nofollow"><img src="https://img.shields.io/github/stars/settlemint/solidity-attestation-service" alt="stars"></a>
-</p>
+![logo](https://github.com/settlemint/solidity-attestation-service/blob/main/OG_Solidity.jpg)
 
-<div align="center">
-  <a href="https://console.settlemint.com/documentation/">Documentation</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://discord.com/invite/Mt5yqFrey9">Discord</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://www.npmjs.com/package/@settlemint/solidity-attestation-service">NPM</a>
-  <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://github.com/settlemint/solidity-attestation-service/issues">Issues</a>
-  <br />
-</div>
+✨ [https://settlemint.com](https://settlemint.com) ✨
+
+Build your own blockchain usecase with ease.
+
+[![CI status](https://github.com/settlemint/solidity-attestation-service/actions/workflows/solidity.yml/badge.svg?event=push&branch=main)](https://github.com/settlemint/solidity-attestation-service/actions?query=branch%3Amain) [![License](https://img.shields.io/npm/l/@settlemint/solidity-attestation-service)](https://fsl.software) [![npm](https://img.shields.io/npm/dw/@settlemint/solidity-attestation-service)](https://www.npmjs.com/package/@settlemint/solidity-attestation-service) [![stars](https://img.shields.io/github/stars/settlemint/solidity-attestation-service)](https://github.com/settlemint/solidity-attestation-service)
+
+[Documentation](https://console.settlemint.com/documentation/) • [Discord](https://discord.com/invite/Mt5yqFrey9) • [NPM](https://www.npmjs.com/package/@settlemint/solidity-attestation-service) • [Issues](https://github.com/settlemint/solidity-attestation-service/issues)
 
 ## Get started
 
