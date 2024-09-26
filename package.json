@@ -1,7 +1,7 @@
 {
   "name": "@settlemint/solidity-attestation-service",
   "description": "Smart contract set to use the Ethereum Attestation Service in SettleMint",
-  "version": "7.0.0",
+  "version": "7.6.6",
   "private": false,
   "license": "FSL-1.1-MIT",
   "author": {
@@ -67,5 +67,3 @@
     "@openzeppelin/contracts": "5.0.2"
   }
 }
-
-
