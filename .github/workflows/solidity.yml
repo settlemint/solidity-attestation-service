@@ -1,4 +1,4 @@
-name: Branch
+name: Solidity
 
 on:
   pull_request:
@@ -50,7 +50,6 @@ jobs:
         with:
           sarif: slither.sarif
           slither-args: --filter-paths "lib/" --filter-paths "node_modules/"
-          solc-version: 0.8.26
           fail-on: none
 
       - name: Upload findings to GitHub Advanced Security Dashboard
@@ -65,14 +64,22 @@ jobs:
         image: ghcr.io/settlemint/btp-anvil-test-node:latest
         ports:
           - '8545:8545'
-    name: Test
+    name: Build Set
     #runs-on: ubuntu-latest
     runs-on: namespace-profile-btp-scs
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: namespacelabs/nscloud-checkout-action@v5
         with:
           submodules: recursive
+          token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Setup caches
+        uses: namespacelabs/nscloud-cache-action@v1
+        with:
+          path: |
+            ./node_modules
+            ~/.npm
 
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
@@ -85,6 +92,130 @@ jobs:
 
       - name: Install Node dependencies
         run: npm install
+
+      - name: Install circom
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y
+          git clone https://github.com/iden3/circom.git
+          cd circom
+          cargo build --release
+          cargo install --path circom
+
+      - name: Install snarkjs
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          npm install -g snarkjs@latest
+
+      - name: Install zeto
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          git clone https://github.com/victoryeo/zeto.git
+          cd zeto
+          cd zkp/circuits
+          npm install
+          cd ..
+          circom circuits/anon_enc_nullifier.circom --output ./js/lib --sym --wasm
+          circom circuits/anon_enc.circom --output ./js/lib --sym --wasm
+          circom circuits/anon_nullifier.circom --output ./js/lib --sym --wasm
+          circom circuits/anon.circom --output ./js/lib --sym --wasm
+          circom circuits/check-nullifiers.circom --output ./js/lib --sym --wasm
+          circom circuits/nf_anon_nullifier.circom --output ./js/lib --sym --wasm
+          circom circuits/nf_anon.circom --output ./js/lib --sym --wasm
+
+      - name: Create folder
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          mkdir -p ./zeto/proving-keys
+
+      - name: Download ptau
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          cd zeto
+          cd proving-keys
+          wget -nv https://storage.googleapis.com/zkevm/ptau/powersOfTau28_hez_final_12.ptau
+          wget -nv https://storage.googleapis.com/zkevm/ptau/powersOfTau28_hez_final_13.ptau
+          wget -nv https://storage.googleapis.com/zkevm/ptau/powersOfTau28_hez_final_16.ptau
+          wget -nv https://storage.googleapis.com/zkevm/ptau/powersOfTau28_hez_final_11.ptau
+          wget -nv https://storage.googleapis.com/zkevm/ptau/powersOfTau28_hez_final_15.ptau
+
+      - name: Generate R1CS circuit format
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          cd zeto
+          cd zkp/
+          circom circuits/anon_enc_nullifier.circom --output ../proving-keys --r1cs
+          circom circuits/anon_enc.circom --output ../proving-keys --r1cs
+          circom circuits/anon_nullifier.circom --output ../proving-keys --r1cs
+          circom circuits/anon.circom --output ../proving-keys --r1cs
+          circom circuits/check-nullifiers.circom --output ../proving-keys --r1cs
+          circom circuits/nf_anon_nullifier.circom --output ../proving-keys --r1cs
+          circom circuits/nf_anon.circom --output ../proving-keys --r1cs
+          ls ../proving-keys -la
+
+      - name: Generate proving keys
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          cd zeto
+          cd zkp/
+          snarkjs groth16 setup ../proving-keys/anon.r1cs ../proving-keys/powersOfTau28_hez_final_12.ptau ../proving-keys/anon.zkey
+          snarkjs groth16 setup ../proving-keys/anon_enc.r1cs ../proving-keys/powersOfTau28_hez_final_13.ptau ../proving-keys/anon_enc.zkey
+          snarkjs groth16 setup ../proving-keys/anon_nullifier.r1cs ../proving-keys/powersOfTau28_hez_final_16.ptau ../proving-keys/anon_nullifier.zkey
+          snarkjs groth16 setup ../proving-keys/anon_enc_nullifier.r1cs ../proving-keys/powersOfTau28_hez_final_16.ptau ../proving-keys/anon_enc_nullifier.zkey
+          snarkjs groth16 setup ../proving-keys/nf_anon.r1cs ../proving-keys/powersOfTau28_hez_final_11.ptau ../proving-keys/nf_anon.zkey
+          snarkjs groth16 setup ../proving-keys/nf_anon_nullifier.r1cs ../proving-keys/powersOfTau28_hez_final_15.ptau ../proving-keys/nf_anon_nullifier.zkey
+
+      - name: Per-circuit set up ceremony on proving keys
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          cd zeto
+          cd zkp/
+          snarkjs zkey contribute ../proving-keys/anon.zkey ../proving-keys/anon_new.zkey --name="contribution" -v -e="random entropy"
+          snarkjs zkey contribute ../proving-keys/anon_enc.zkey ../proving-keys/anon_enc_new.zkey --name="contribution" -v -e="random entropy"
+          snarkjs zkey contribute ../proving-keys/anon_nullifier.zkey ../proving-keys/anon_nullifier_new.zkey --name="contribution" -v -e="random entropy"
+          snarkjs zkey contribute ../proving-keys/anon_enc_nullifier.zkey ../proving-keys/anon_enc_nullifier_new.zkey --name="contribution" -v -e="random entropy"
+          snarkjs zkey contribute ../proving-keys/nf_anon.zkey ../proving-keys/nf_anon_new.zkey --name="contribution" -v -e="random entropy"
+          snarkjs zkey contribute ../proving-keys/nf_anon_nullifier.zkey ../proving-keys/nf_anon_nullifier_new.zkey --name="contribution" -v -e="random entropy"
+
+      - name: Generate verfication keys
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          cd zeto
+          cd zeto
+          cd zkp/
+          snarkjs zkey export verificationkey ../proving-keys/anon_new.zkey ../proving-keys/anon-vkey.json
+          snarkjs zkey export verificationkey ../proving-keys/anon_enc_new.zkey ../proving-keys/anon_enc-vkey.json
+          snarkjs zkey export verificationkey ../proving-keys/anon_nullifier_new.zkey ../proving-keys/anon_nullifier-vkey.json
+          snarkjs zkey export verificationkey ../proving-keys/anon_enc_nullifier_new.zkey ../proving-keys/anon_enc_nullifier-vkey.json
+          snarkjs zkey export verificationkey ../proving-keys/nf_anon_new.zkey ../proving-keys/nf_anon-vkey.json
+          snarkjs zkey export verificationkey ../proving-keys/nf_anon_nullifier_new.zkey ../proving-keys/nf_anon_nullifier-vkey.json
+
+      - name: Generate solidity verifier library
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+          mkdir -p ./zeto/contracts-lib
+          mkdir -p ./zeto/contracts-lib
+          cd zeto
+          cd zkp/
+          snarkjs zkey export solidityverifier ../proving-keys/anon_new.zkey ../contracts-lib/verifier_anon.sol
+          snarkjs zkey export solidityverifier ../proving-keys/anon_enc_new.zkey ../contracts-lib/verifier_anon_enc.sol
+          snarkjs zkey export solidityverifier ../proving-keys/anon_nullifier_new.zkey ../contracts-lib/verifier_anon_nullifier.sol
+          snarkjs zkey export solidityverifier ../proving-keys/anon_enc_nullifier_new.zkey ../contracts-lib/verifier_anon_enc_nullifier.sol
+          snarkjs zkey export solidityverifier ../proving-keys/nf_anon_new.zkey ../contracts-lib/verifier_nf_anon.sol
+          snarkjs zkey export solidityverifier ../proving-keys/nf_anon_nullifier_new.zkey ../contracts-lib/verifier_nf_anon_nullifier.sol
+
+
+      - name: Edit solidity files
+        if: github.repository == 'settlemint/solidity-zeto'
+        run: |
+            cd zeto
+            cd contracts-lib
+            sed 's/Groth16Verifier/Groth16Verifier_Anon/' verifier_anon.sol > ../solidity/contracts/lib/verifier_anon.sol
+            sed 's/Groth16Verifier/Groth16Verifier_AnonEnc/' verifier_anon_enc.sol > ../solidity/contracts/lib/verifier_anon_enc.sol
+            sed 's/Groth16Verifier/Groth16Verifier_AnonNullifier/' verifier_anon_nullifier.sol > ../solidity/contracts/lib/verifier_anon_nullifier.sol
+            sed 's/Groth16Verifier/Groth16Verifier_AnonEncNullifier/' verifier_anon_enc_nullifier.sol > ../solidity/contracts/lib/verifier_anon_enc_nullifier.sol
+            sed 's/Groth16Verifier/Groth16Verifier_NFAnon/' verifier_nf_anon.sol > ../solidity/contracts/lib/verifier_nf_anon.sol
+            sed 's/Groth16Verifier/Groth16Verifier_NFAnonNullifier/' verifier_nf_anon_nullifier.sol > ../solidity/contracts/lib/verifier_nf_anon_nullifier.sol
 
       - name: Run Forge build
         run: |
@@ -139,25 +270,86 @@ jobs:
           npx graph codegen generated/scs.subgraph.yaml
           npx graph build generated/scs.subgraph.yaml
 
-      # - name: Report code coverage
-      #   if: github.event_name == 'pull_request'
-      #   uses: zgosalvez/github-actions-report-lcov@v4.1.12
-      #   with:
-      #     coverage-files: lcov.info
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
-      #     update-comment: true
-
-  docker:
-    needs:
-      - test
-    name: Docker
-    #runs-on: ubuntu-latest
-    runs-on: namespace-profile-btp-scs
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Report code coverage
+        if: github.event_name == 'pull_request'
+        uses: zgosalvez/github-actions-report-lcov@v4.1.15
         with:
-          submodules: recursive
+          coverage-files: lcov.info
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          update-comment: true
+
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: Package version
+        id: package-version
+        run: |
+          OLD_VERSION=$(jq -r '.version' package.json)
+          echo "Old version: $OLD_VERSION"
+          if [[ $GITHUB_REF_SLUG =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            VERSION=$(echo $GITHUB_REF_SLUG | sed 's/^v//')
+            echo "TAG=latest" >> $GITHUB_ENV
+          elif [[ $GITHUB_REF_NAME == "main" ]]; then
+            VERSION="${OLD_VERSION}-main$(echo $GITHUB_SHA_SHORT | sed 's/^v//')"
+            echo "TAG=main" >> $GITHUB_ENV
+          else
+            VERSION="${OLD_VERSION}-pr$(echo $GITHUB_SHA_SHORT | sed 's/^v//')"
+            echo "TAG=pr" >> $GITHUB_ENV
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Updating version to $VERSION"
+          jq --arg version "$VERSION" '.version = $version' package.json > package.json.tmp && mv package.json.tmp package.json
+
+          echo "Updated version to $VERSION"
+
+      - name: Install zsh
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y zsh
+
+      - name: Verify zsh installation
+        run: |
+          zsh --version
+          which zsh
+
+      - name: Generate README.md
+        if: github.repository == 'settlemint/solidity-predeployed'
+        run: |
+          rm -Rf README.md
+          cp .github/BASE.md README.md
+          ./genesis-output
+          echo "" >> README.md
+          echo "\`\`\`json" >> README.md
+          cat all_allocations.json >> README.md
+          echo "\`\`\`" >> README.md
+          cat all_allocations.json
+
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
+          package: ./package.json
+          access: public
+          provenance: false
+          strategy: all
+          tag: ${{ env.TAG }}
+
+      - name: Create or update a comment
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: taoliujun/action-unique-comment@v1
+        with:
+            uniqueIdentifier: ${{ github.workflow }}
+            body: |
+                # 📦 Packages
+                | Package | Install |
+                | ------- | -------------------- |
+                | React | `npm i @${{ github.repository_owner }}/${{ github.repository }}@${{ env.VERSION }}` |
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
+        if: ${{ env.TAG == 'latest' }}
+        with:
+          commit_message: "chore: update package versions [skip ci]"
+          branch: main
+          file_pattern: 'package.json README.md'
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
