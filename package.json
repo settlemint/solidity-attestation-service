@@ -63,7 +63,6 @@
     "merkletreejs": "0.4.0",
     "nft.storage": "7.2.0",
     "sharp": "0.33.5",
-    "@ethereum-attestation-service/eas-contracts": "1.7.1",
-    "@openzeppelin/contracts": "5.1.0"
+    "@ethereum-attestation-service/eas-contracts": "1.7.1"
   }
 }
