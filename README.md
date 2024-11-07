@@ -21,7 +21,7 @@ forge init my-project --template settlemint/solidity-attestation-service
 Or if you want to use this set as a dependency of your own,
 
 ```shell
-npm install @settlemint/solidity-attestation-service
+bun install @settlemint/solidity-attestation-service
 ```
 
 ## DX: Foundry & Hardhat hybrid
