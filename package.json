@@ -45,6 +45,8 @@
   },
   "dependencies": {},
   "trustedDependencies": [
-    "protobufjs"
+    "keccak",
+    "protobufjs",
+    "secp256k1"
   ]
 }
