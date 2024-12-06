@@ -48,5 +48,8 @@
     "keccak",
     "protobufjs",
     "secp256k1"
-  ]
+  ],
+  "overrides": {
+    "elliptic": "6.6.1"
+  }
 }

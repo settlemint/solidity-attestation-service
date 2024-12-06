@@ -18,9 +18,7 @@ const config: HardhatUserConfig = {
     hardhat: {},
     btp: {
       url: process.env.BTP_RPC_URL || "",
-      gasPrice: process.env.BTP_GAS_PRICE
-        ? parseInt(process.env.BTP_GAS_PRICE)
-        : "auto",
+      gasPrice: process.env.BTP_GAS_PRICE ? parseInt(process.env.BTP_GAS_PRICE) : "auto",
     },
   },
   etherscan: {
@@ -28,7 +26,7 @@ const config: HardhatUserConfig = {
   },
   sourcify: {
     enabled: true,
-  },
+  }
 };
 
 export default config;
