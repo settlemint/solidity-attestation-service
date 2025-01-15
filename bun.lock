@@ -9,7 +9,7 @@
         "@nomicfoundation/hardhat-toolbox-viem": "3.0.0",
         "@nomiclabs/hardhat-solhint": "4.0.1",
         "@openzeppelin/contracts": "5.2.0",
-        "@settlemint/sdk-cli": "1.0.3",
+        "@settlemint/sdk-cli": "1.0.4",
         "@types/node": "22.10.6",
         "hardhat": "2.22.18",
         "solhint": "5.0.4",
@@ -208,7 +208,7 @@
 
     "@sentry/utils": ["@sentry/utils@5.30.0", "", { "dependencies": { "@sentry/types": "5.30.0", "tslib": "^1.9.3" } }, "sha512-zaYmoH0NWWtvnJjC9/CBseXMtKHm/tm40sz3YfJRxeQjyzRqNQPgivpd9R/oDJCYj999mzdW382p/qi2ypjLww=="],
 
-    "@settlemint/sdk-cli": ["@settlemint/sdk-cli@1.0.3", "", { "dependencies": { "hardhat": "2.22.18" }, "bin": { "settlemint": "dist/cli.js" } }, "sha512-ONxufJ6Vh2/A0zZt+L8Eg4qY9yJO35ZoIVZux7ZS3nSiqTocINe0hl7N8gPzExmdQqnPgss9He4mO6dO11J5Pg=="],
+    "@settlemint/sdk-cli": ["@settlemint/sdk-cli@1.0.4", "", { "dependencies": { "hardhat": "2.22.18" }, "bin": { "settlemint": "dist/cli.js" } }, "sha512-Kcr3DjLB1AOKsxMxfBXbuE2OaSq5ltZrf+8hOPKalErZCNYJLRP3/cs3n54DKMQdMDgNm1Mgo+rZVOKI4sJRUQ=="],
 
     "@sindresorhus/is": ["@sindresorhus/is@5.6.0", "", {}, "sha512-TV7t8GKYaJWsn00tFDqBw8+Uqmr8A0fRU1tvTQhyZzGv0sJCGRQL3JGMI3ucuKo3XIZdUP+Lx7/gh2t3lewy7g=="],
 
