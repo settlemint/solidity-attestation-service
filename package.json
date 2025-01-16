@@ -51,6 +51,8 @@
     "secp256k1"
   ],
   "overrides": {
-    "elliptic": "6.6.1"
+    "elliptic": "6.6.1",
+    "ws": "7.5.10",
+    "adm-zip": "0.5.2"
   }
 }
