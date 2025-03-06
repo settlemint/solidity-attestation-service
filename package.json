@@ -40,7 +40,7 @@
     "@nomiclabs/hardhat-solhint": "4.0.1",
     "@openzeppelin/contracts": "5.2.0",
     "@settlemint/sdk-cli": "1.1.14",
-    "@types/node": "22.13.8",
+    "@types/node": "22.13.9",
     "hardhat": "2.22.19",
     "solhint": "5.0.5"
   },
