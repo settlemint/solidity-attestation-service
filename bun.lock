@@ -9,7 +9,7 @@
         "@nomicfoundation/hardhat-toolbox-viem": "3.0.0",
         "@nomiclabs/hardhat-solhint": "4.0.1",
         "@openzeppelin/contracts": "5.2.0",
-        "@settlemint/sdk-cli": "1.2.2",
+        "@settlemint/sdk-cli": "1.2.3",
         "@types/node": "22.13.10",
         "hardhat": "2.22.19",
         "solhint": "5.0.5",
@@ -212,7 +212,7 @@
 
     "@sentry/utils": ["@sentry/utils@5.30.0", "", { "dependencies": { "@sentry/types": "5.30.0", "tslib": "^1.9.3" } }, "sha512-zaYmoH0NWWtvnJjC9/CBseXMtKHm/tm40sz3YfJRxeQjyzRqNQPgivpd9R/oDJCYj999mzdW382p/qi2ypjLww=="],
 
-    "@settlemint/sdk-cli": ["@settlemint/sdk-cli@1.2.2", "", { "dependencies": { "tinyexec": "0.3.2" }, "peerDependencies": { "hardhat": "2.22.19" }, "optionalPeers": ["hardhat"], "bin": { "settlemint": "dist/cli.js" } }, "sha512-nbH0sOcvxHzYF6XuoXhpQ0boxTVQ8u54fsMidBUEy9hchbhQgsjd/jLGrTQZ5KqwZ4FjfrLoV2hplmF8Inx74w=="],
+    "@settlemint/sdk-cli": ["@settlemint/sdk-cli@1.2.3", "", { "dependencies": { "tinyexec": "0.3.2" }, "peerDependencies": { "hardhat": "2.22.19" }, "optionalPeers": ["hardhat"], "bin": { "settlemint": "dist/cli.js" } }, "sha512-9CpaQkCx+KwrwBUyIruUuRWez5vmnjOHHNCdcCd+LDsllMgMtavkJeyv3442GV0NlKz/vsRVVe42t5OXOz+37g=="],
 
     "@sindresorhus/is": ["@sindresorhus/is@5.6.0", "", {}, "sha512-TV7t8GKYaJWsn00tFDqBw8+Uqmr8A0fRU1tvTQhyZzGv0sJCGRQL3JGMI3ucuKo3XIZdUP+Lx7/gh2t3lewy7g=="],
 
