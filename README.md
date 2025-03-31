@@ -1,4 +1,4 @@
-![logo](https://github.com/settlemint/solidity-attestation-service/blob/main/OG_Solidity.jpg)
+![logo](https://github.com/settlemint/solidity-attestation-service/blob/main/OG_Solidity.png)
 
 ✨ [https://settlemint.com](https://settlemint.com) ✨
 
