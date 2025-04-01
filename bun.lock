@@ -10,7 +10,7 @@
         "@nomiclabs/hardhat-solhint": "4.0.1",
         "@openzeppelin/contracts": "5.2.0",
         "@settlemint/sdk-cli": "2.0.0",
-        "@types/node": "22.13.16",
+        "@types/node": "22.13.17",
         "hardhat": "2.22.19",
         "solhint": "5.0.5",
       },
@@ -21,15 +21,15 @@
     "secp256k1",
   ],
   "overrides": {
-    "elliptic": "6.6.1",
-    "ws": "8.18.1",
     "adm-zip": "0.5.16",
-    "cross-spawn": "7.0.6",
-    "semver": "7.7.1",
-    "undici": "7.6.0",
     "axios": "1.8.4",
     "cookie": "1.0.2",
+    "cross-spawn": "7.0.6",
     "ejs": "3.1.10",
+    "elliptic": "6.6.1",
+    "semver": "7.7.1",
+    "undici": "7.6.0",
+    "ws": "8.18.1",
   },
   "packages": {
     "@adraffy/ens-normalize": ["@adraffy/ens-normalize@1.10.1", "", {}, "sha512-96Z2IP3mYmF1Xg2cDm8f1gWGf/HUVedQ3FMifV4kG/PQ4yEP51xDtRAEfhVNt5f/uzpNkZHwWQuUcu6D6K+Ekw=="],
@@ -250,7 +250,7 @@
 
     "@types/mocha": ["@types/mocha@10.0.10", "", {}, "sha512-xPyYSz1cMPnJQhl0CLMH68j3gprKZaTjG3s5Vi+fDgx+uhG9NOXwbVt52eFS8ECyXhyKcjDLCBEqBExKuiZb7Q=="],
 
-    "@types/node": ["@types/node@22.13.16", "", { "dependencies": { "undici-types": "~6.20.0" } }, "sha512-15tM+qA4Ypml/N7kyRdvfRjBQT2RL461uF1Bldn06K0Nzn1lY3nAPgHlsVrJxdZ9WhZiW0Fmc1lOYMtDsAuB3w=="],
+    "@types/node": ["@types/node@22.13.17", "", { "dependencies": { "undici-types": "~6.20.0" } }, "sha512-nAJuQXoyPj04uLgu+obZcSmsfOenUg6DxPKogeUy6yNCFwWaj5sBF8/G/pNo8EtBJjAfSVgfIlugR/BCOleO+g=="],
 
     "@types/pbkdf2": ["@types/pbkdf2@3.1.2", "", { "dependencies": { "@types/node": "*" } }, "sha512-uRwJqmiXmh9++aSu1VNEn3iIxWOhd8AHXNSdlaLfdAAdSTY9jYVeGWnzejM3dvrkbqE3/hyQkQQ29IFATEGlew=="],
 
