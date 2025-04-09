@@ -8,7 +8,7 @@
         "@nomicfoundation/hardhat-ignition-viem": "0.15.10",
         "@nomicfoundation/hardhat-toolbox-viem": "3.0.0",
         "@nomiclabs/hardhat-solhint": "4.0.1",
-        "@openzeppelin/contracts": "5.2.0",
+        "@openzeppelin/contracts": "5.3.0",
         "@settlemint/sdk-cli": "2.0.0",
         "@types/node": "22.14.0",
         "hardhat": "2.22.19",
@@ -186,7 +186,7 @@
 
     "@nomiclabs/hardhat-solhint": ["@nomiclabs/hardhat-solhint@4.0.1", "", { "dependencies": { "solhint": "^5.0.2" }, "peerDependencies": { "hardhat": "^2.0.0" } }, "sha512-ekfbbGfUwMZGr9aPAurPa7GVMX/6XqKemppVEez+mC36H7G5UyBsnrUKZMhMDVHG9S7+ke9sLuaibnWvpdSrQA=="],
 
-    "@openzeppelin/contracts": ["@openzeppelin/contracts@5.2.0", "", {}, "sha512-bxjNie5z89W1Ea0NZLZluFh8PrFNn9DH8DQlujEok2yjsOlraUPKID5p1Wk3qdNbf6XkQ1Os2RvfiHrrXLHWKA=="],
+    "@openzeppelin/contracts": ["@openzeppelin/contracts@5.3.0", "", {}, "sha512-zj/KGoW7zxWUE8qOI++rUM18v+VeLTTzKs/DJFkSzHpQFPD/jKKF0TrMxBfGLl3kpdELCNccvB3zmofSzm4nlA=="],
 
     "@pnpm/config.env-replace": ["@pnpm/config.env-replace@1.1.0", "", {}, "sha512-htyl8TWnKL7K/ESFa1oW2UB5lVDxuF5DpM7tBi6Hu2LNL3mWkIzNLG6N4zoCUP1lCKNxWy/3iu8mS8MvToGd6w=="],
 
