@@ -42,7 +42,7 @@
     "@settlemint/sdk-cli": "2.1.0",
     "@types/node": "22.15.3",
     "hardhat": "2.22.19",
-    "solhint": "5.0.5"
+    "solhint": "5.1.0"
   },
   "dependencies": {},
   "trustedDependencies": [
