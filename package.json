@@ -34,13 +34,13 @@
   ],
   "devDependencies": {
     "@ethereum-attestation-service/eas-contracts": "1.8.0",
-    "@nomicfoundation/hardhat-foundry": "1.1.4",
-    "@nomicfoundation/hardhat-ignition-viem": "0.15.12",
+    "@nomicfoundation/hardhat-foundry": "1.2.0",
+    "@nomicfoundation/hardhat-ignition-viem": "0.15.13",
     "@nomicfoundation/hardhat-toolbox-viem": "3.0.0",
-    "@nomiclabs/hardhat-solhint": "4.0.2",
+    "@nomiclabs/hardhat-solhint": "4.1.0",
     "@openzeppelin/contracts": "5.3.0",
     "@types/node": "22.16.4",
-    "hardhat": "2.25.0",
+    "hardhat": "2.26.0",
     "solhint": "5.2.0"
   },
   "dependencies": {},
