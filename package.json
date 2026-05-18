@@ -33,7 +33,7 @@
     "/artifacts"
   ],
   "devDependencies": {
-    "@ethereum-attestation-service/eas-contracts": "1.8.0",
+    "@ethereum-attestation-service/eas-contracts": "1.9.0",
     "@nomicfoundation/hardhat-foundry": "1.2.0",
     "@nomicfoundation/hardhat-ignition-viem": "0.15.16",
     "@nomicfoundation/hardhat-toolbox-viem": "4.1.1",
